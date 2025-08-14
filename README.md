@@ -1,202 +1,206 @@
-# Border Monitor - Malaysia-Singapore Transit
+# Border Monitor - Malaysia-Singapore Transit System
 
-A real-time border congestion monitoring and reminder system for Malaysia-Singapore land border crossings. This application provides live traffic updates, peak time predictions, and customizable alerts to help travelers plan their border crossings efficiently.
+A real-time border congestion monitoring and reminder system for Malaysia-Singapore crossings, featuring smart peak time prediction, custom alerts, and comprehensive traffic analysis.
 
-## 🚀 Features
+## 🌐 Live Demo
 
-### Core Functionality
-- **Real-time Traffic Monitoring**: Live updates generated using realistic traffic patterns
-- **Smart Peak Time Prediction**: AI-based forecasting using historical patterns and upcoming events
-- **Custom Alerts & Reminders**: Personalized notifications based on user preferences
-- **Multi-Checkpoint Support**: Monitor both Woodlands and Tuas checkpoints
-- **Bidirectional Monitoring**: Track traffic in both directions (Malaysia ↔ Singapore)
+**GitHub Repository**: [https://github.com/learn-burn-code-123/singapore-malaysia-border-crossing.git](https://github.com/learn-burn-code-123/singapore-malaysia-border-crossing.git)
 
-### User Experience
-- **Modern Web Interface**: Responsive React application with real-time updates
-- **Interactive Dashboard**: Visual traffic status with color-coded congestion levels
-- **Historical Analytics**: Traffic trends and peak time analysis
-- **Customizable Settings**: User preferences for notifications and monitoring
-- **Mobile-Friendly**: Optimized for all device sizes
+## 🚀 Quick Start
 
-### Technical Features
-- **Real-time Updates**: WebSocket connections for live data streaming
-- **Local Data Generation**: Realistic traffic patterns without external dependencies
-- **Scalable Architecture**: Node.js backend with in-memory data storage
-- **API-First Design**: RESTful APIs for easy integration
-- **Security**: Rate limiting and data validation
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+- **No external API keys required**
+- **No database setup required**
+
+### Installation & Running
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/learn-burn-code-123/singapore-malaysia-border-crossing.git
+   cd singapore-malaysia-border-crossing
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm run install-all
+   ```
+
+3. **Start the application**
+   ```bash
+   npm run dev
+   ```
+
+   Or use the provided startup script:
+   ```bash
+   chmod +x start.sh
+   ./start.sh
+   ```
+
+4. **Access the application**
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:5001
+   - Health Check: http://localhost:5001/health
 
 ## 🏗️ Architecture
 
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Data Generation│    │  Data Processing │    │  Application    │
-│                 │    │                  │    │                 │
-│ • Traffic Patterns│───▶│ • Pattern Analysis│───▶│ • Web App       │
-│ • Time-based Logic│    │ • Peak Detection │    │ • Mobile App    │
-│ • Weather Effects│    │ • Historical Data│    │ • API Endpoints │
-│ • Event Simulation│    │ • Trend Analysis │    │ • Notifications │
+│   React Client  │◄──►│  Express Server  │◄──►│ Data Generation │
+│   (Port 3000)   │    │   (Port 5001)    │    │   (In-Memory)   │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+         │                       │                       │
+         │                       │                       │
+         ▼                       ▼                       ▼
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Socket.IO     │    │  Traffic Routes  │    │ Realistic      │
+│   Real-time     │    │  & Middleware    │    │ Traffic        │
+│   Updates       │    │                  │    │ Patterns       │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
 ```
 
+## 🎯 Core Functionality
+
+### Real-Time Traffic Monitoring
+- **Live Updates**: Real-time traffic status for all crossing points
+- **Smart Simulation**: Realistic traffic patterns based on time, day, and events
+- **Multiple Crossings**: Woodlands, Tuas, and Second Link checkpoints
+- **Bidirectional Monitoring**: Malaysia-to-Singapore and Singapore-to-Malaysia
+
+### Intelligent Traffic Analysis
+- **Peak Time Prediction**: AI-powered analysis of historical patterns
+- **Congestion Forecasting**: Predictive modeling for traffic conditions
+- **Weather Impact**: Simulated weather effects on travel times
+- **Special Events**: Holiday and event-based traffic predictions
+
+### User Experience Features
+- **Custom Alerts**: Set personalized traffic notifications
+- **Interactive Dashboard**: Real-time charts and status cards
+- **Responsive Design**: Mobile-first, modern UI with Tailwind CSS
+- **Local Storage**: Settings and alerts stored in your browser
+
 ## 🛠️ Technology Stack
 
-### Backend
-- **Node.js** with Express.js framework
-- **Socket.IO** for real-time communication
-- **Node-cron** for scheduled tasks
-- **In-memory data storage** (no database required)
-
 ### Frontend
-- **React 18** with functional components and hooks
-- **Tailwind CSS** for styling
-- **Recharts** for data visualization
-- **React Router** for navigation
-- **Socket.IO Client** for real-time updates
-- **Lucide React** for icons
+- **React 18** - Modern UI framework
+- **Tailwind CSS** - Utility-first CSS framework
+- **Recharts** - Data visualization library
+- **Socket.IO Client** - Real-time communication
+- **React Router** - Client-side routing
+- **React Hot Toast** - User notifications
 
-### Data Generation
-- **Realistic traffic patterns** based on time of day and day of week
-- **Weekend and holiday effects** for accurate predictions
-- **Weather simulation** for realistic variations
-- **Peak hour analysis** using historical pattern algorithms
+### Backend
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web application framework
+- **Socket.IO** - Real-time bidirectional communication
+- **Node-cron** - Task scheduling
+- **In-memory data storage** - No external database required
+- **Realistic traffic patterns** - Simulated data generation
 
-## 📋 Prerequisites
+### Development Tools
+- **Nodemon** - Development server with auto-reload
+- **Concurrently** - Run multiple commands simultaneously
+- **ESLint** - Code quality and consistency
 
-- **Node.js** (v16 or higher)
-- **npm** or **yarn** package manager
-- **No external API keys required**
-- **No database setup required**
-
-## 🚀 Quick Start
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/yourusername/singapore-malaysia-transit.git
-cd singapore-malaysia-transit
-```
-
-### 2. Install Dependencies
-```bash
-# Install all dependencies (root, server, and client)
-npm run install-all
-```
-
-### 3. Environment Configuration (Optional)
-```bash
-# Copy the example environment file (optional)
-cp env.example .env
-
-# The application works without any environment variables
-# All traffic data is generated locally
-```
-
-### 4. Run the Application
-```bash
-# Development mode (both server and client)
-npm run dev
-
-# Or run separately:
-npm run server    # Backend only
-npm run client    # Frontend only
-```
-
-The application will be available at:
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:5000
-- **Health Check**: http://localhost:5000/health
-
-## 📱 Usage
-
-### Dashboard
-- View real-time traffic status for all crossings
-- Monitor wait times and congestion levels
-- Access historical trends and peak time analysis
-
-### Alerts
-- Set custom traffic alerts based on wait time thresholds
-- Configure notification preferences (browser notifications)
-- Set quiet hours for non-urgent notifications
-
-### Settings
-- Customize default crossing points and directions
-- Manage notification channels and frequencies
-- Configure privacy and data sharing preferences
-
-## 🔧 API Endpoints
+## 📊 API Endpoints
 
 ### Traffic Data
-- `GET /api/traffic/status` - Current traffic status
+- `GET /api/traffic/status` - Current traffic status for all crossings
 - `GET /api/traffic/status/:crossing/:direction` - Specific crossing status
-- `GET /api/traffic/history/:crossing/:direction` - Historical data
+- `GET /api/traffic/history/:crossing/:direction` - Historical traffic data
 - `GET /api/traffic/stats/:crossing/:direction` - Traffic statistics
-- `GET /api/traffic/peak-times/:crossing/:direction` - Peak time analysis
+- `GET /api/traffic/peak-times/:crossing/:direction` - Peak time predictions
 
-### Alerts
-- `GET /api/alerts` - User alerts
-- `POST /api/alerts` - Create alert
-- `PUT /api/alerts/:id` - Update alert
-- `DELETE /api/alerts/:id` - Delete alert
+### System
+- `GET /health` - Server health check
+- `WebSocket` - Real-time traffic updates via Socket.IO
 
-## 🧪 Testing
+## 🔧 Configuration
 
-```bash
-# Run backend tests
-cd server
-npm test
+### Environment Variables (Optional)
+```env
+# Server Configuration
+NODE_ENV=development
+PORT=5001
+CLIENT_URL=http://localhost:3000
 
-# Run frontend tests
-cd client
-npm test
-
-# Run all tests
-npm run test:all
+# Application Settings
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
 ```
 
-## 📊 Data Models
+**Note**: The application works without any environment variables - all settings use sensible defaults.
 
-### TrafficData
-- Crossing point (Woodlands/Tuas)
-- Direction (Malaysia ↔ Singapore)
-- Wait time and congestion level
-- Data source and confidence
-- Weather and special events
-- Timestamp and metadata
+## 📱 Features in Detail
 
-### User Preferences
-- Travel preferences and schedule
-- Notification settings
-- Alert history and preferences
+### Dashboard
+- **Real-time Status Cards**: Live traffic information for each crossing
+- **Interactive Charts**: Historical traffic trends and patterns
+- **Peak Time Widget**: Predicted busy periods and recommendations
+- **Overall Status Alert**: System-wide traffic condition summary
+
+### Alerts System
+- **Custom Notifications**: Set alerts for specific crossings and conditions
+- **Local Storage**: Alerts saved in your browser (no account needed)
+- **Flexible Conditions**: Configure wait time thresholds and directions
+- **Real-time Updates**: Instant notification when conditions change
+
+### Settings & Preferences
+- **Notification Preferences**: Browser push notification settings
+- **Privacy Controls**: Local data storage configuration
+- **User Preferences**: Customizable dashboard and display options
+
+## 🚦 Traffic Simulation Features
+
+### Realistic Patterns
+- **Time-based Variations**: Morning rush, evening peak, night lull
+- **Day-of-week Effects**: Weekend traffic patterns and holiday impacts
+- **Weather Simulation**: Rain, haze, and clear weather effects
+- **Special Events**: Chinese New Year, school holidays, weekend travel
+
+### Data Generation
+- **Historical Patterns**: 24-hour historical data generation
+- **Peak Time Analysis**: 7-day peak time prediction
+- **Statistical Analysis**: Average, min, max wait times and congestion breakdown
+- **Real-time Updates**: 30-second refresh intervals
 
 ## 🔒 Security Features
 
-- **Rate Limiting**: API request throttling
-- **Input Validation**: Data sanitization and validation
-- **CORS**: Cross-origin resource sharing configuration
-- **Helmet**: Security headers and middleware
+- **Helmet.js** - Security headers and protection
+- **CORS Configuration** - Cross-origin resource sharing
+- **Input Validation** - Request parameter sanitization
+- **Error Handling** - Comprehensive error management
+- **Rate Limiting** - API request throttling (when enabled)
+
+## 📈 Performance
+
+- **Lightning Fast**: In-memory data access
+- **Real-time Updates**: 30-second refresh cycles
+- **Efficient Rendering**: React optimization and lazy loading
+- **Responsive UI**: Mobile-first design with smooth animations
+- **Minimal Dependencies**: Lightweight, focused application
 
 ## 🚀 Deployment
 
+### Local Development
+```bash
+npm run dev          # Start both frontend and backend
+npm run server       # Start only backend
+npm run client       # Start only frontend
+```
+
 ### Production Build
 ```bash
-# Build the frontend
-cd client
-npm run build
-
-# Start production server
-cd ../server
-npm start
+npm run build        # Build frontend for production
+npm start           # Start production server
 ```
 
-### Environment Variables for Production
-```env
-NODE_ENV=production
-PORT=5000
-```
-
-### Docker Deployment
+### Docker (Optional)
 ```bash
-# Build and run with Docker Compose
-docker-compose up -d
+# Build and run with Docker
+docker build -t border-monitor .
+docker run -p 5001:5001 -p 3000:3000 border-monitor
 ```
 
 ## 🤝 Contributing
@@ -213,38 +217,25 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **ICA (Immigration & Checkpoints Authority)** for border information
-- **JPJ (Jabatan Pengangkutan Jalan)** for Malaysian transport data
-- **LTA (Land Transport Authority)** for Singapore transport data
-- **Traffic pattern research** for realistic data generation
-
-## 📞 Support
-
-For support and questions:
-- Create an issue in the GitHub repository
-- Contact the development team
-- Check the documentation and FAQ
+- **Traffic pattern research** - Based on real Malaysia-Singapore border crossing patterns
+- **React community** - For the excellent frontend framework
+- **Node.js ecosystem** - For the robust backend platform
+- **Tailwind CSS** - For the beautiful, responsive design system
 
 ## 🔮 Future Enhancements
 
-- **Mobile App**: React Native application
-- **AI Predictions**: Machine learning for traffic forecasting
-- **Integration**: Ride-hailing and logistics systems
-- **Offline Support**: SMS alerts for low-data users
-- **Gamification**: Best time to cross leaderboard
-- **Weather Integration**: Real weather API integration
-- **Event Calendar**: Public holidays and special events
-- **Real-time APIs**: Integration with actual traffic data sources
+- **Mobile App**: Native iOS and Android applications
+- **Advanced Analytics**: Machine learning for traffic prediction
+- **Integration APIs**: Connect with real traffic data sources
+- **Multi-language Support**: Bahasa Malaysia and Chinese localization
+- **Offline Mode**: PWA capabilities for offline access
 
-## 💡 Key Benefits of This Approach
+## 📞 Support
 
-- **No External Dependencies**: Works completely offline
-- **Realistic Data**: Traffic patterns based on real-world observations
-- **Easy Setup**: No API keys or database configuration required
-- **Fast Development**: Instant feedback and testing
-- **Educational**: Great for learning traffic pattern analysis
-- **Production Ready**: Can be easily extended with real data sources
+For questions, issues, or contributions:
+- **GitHub Issues**: [Create an issue](https://github.com/learn-burn-code-123/singapore-malaysia-border-crossing/issues)
+- **Repository**: [https://github.com/learn-burn-code-123/singapore-malaysia-border-crossing.git](https://github.com/learn-burn-code-123/singapore-malaysia-border-crossing.git)
 
 ---
 
-**Built with ❤️ for the Malaysia-Singapore border community**
+**Built with ❤️ for the Malaysia-Singapore transit community**
