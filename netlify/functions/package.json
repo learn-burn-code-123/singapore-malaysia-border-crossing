@@ -1,0 +1,27 @@
+{
+  "name": "border-monitor-netlify-functions",
+  "version": "1.0.0",
+  "description": "Netlify serverless functions for Border Monitor API",
+  "main": "traffic-status.js",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "netlify",
+    "serverless",
+    "functions",
+    "traffic",
+    "border",
+    "malaysia",
+    "singapore"
+  ],
+  "author": "Border Monitor Team",
+  "license": "MIT"
+}
