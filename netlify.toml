@@ -1,20 +1,29 @@
 [build]
-  # Build command for the frontend
-  command = "cd client && npm run build"
+  # Build command - use the optimized build script
+  command = "./netlify-build.sh"
   
-  # Directory to publish (the built React app)
+  # Publish directory - the built React app
   publish = "client/build"
   
-  # Base directory for the build context
+  # Base directory - root of the project
   base = "."
 
 [build.environment]
-  # Node.js version for the build
+  # Node.js version for Netlify
   NODE_VERSION = "18"
   
-  # Set environment variables
+  # Build environment
   NODE_ENV = "production"
-  REACT_APP_API_URL = "https://your-backend-domain.com"
+  
+  # Clear cache to avoid dependency issues
+  NPM_FLAGS = "--no-optional --no-audit --no-fund"
+
+# Functions configuration
+[functions]
+  directory = "netlify/functions"
+  
+  # Node.js version for functions
+  node_bundler = "esbuild"
 
 # Redirects for SPA routing
 [[redirects]]
@@ -30,19 +39,28 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
-# Headers for static assets
+# Cache optimization for static assets
 [[headers]]
   for = "/static/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Headers for HTML files
+# Cache optimization for HTML files
 [[headers]]
-  for = "*.html"
+  for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
-# Functions (if you want to add serverless functions later)
-[functions]
-  directory = "netlify/functions"
+# Cache optimization for service worker
+[[headers]]
+  for = "/service-worker.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Cache optimization for manifest
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
